@@ -21,18 +21,15 @@ contract Cod{
         struct Package{
          string name;
          uint price;
-         uint hash;
+        
          //string details;
    }
    mapping(uint => Package)packages;
-   function Ac1_CreatePackage(string memory _name, uint  _price, uint _hash) onlySeller public{
+   function Ac1_CreatePackage(string memory _name, uint  _price) onlySeller public{
         id++;
         price = _price;
-        hash = _hash;
         packages[id].name = _name;
         packages[id].price = price;
-        packages[id].hash = hash;
-        //packages[id].details = _details;
    }
    function GetPackage(uint _id) public onlySeller view returns( string memory _name, uint  _price){
        require(id == _id);
@@ -40,7 +37,14 @@ contract Cod{
         packages[_id].name,
         packages[_id].price);
    }
-   function Ac2_ApplyBuy(uint _id) public noSeller payable returns(uint){
+   function Ac2_CreateHash()public onlySeller returns(uint){
+     return  hash = uint(keccak256(abi.encodePacked(block.difficulty,now))) % 1500160;
+   }
+   function GetHash()public view onlySeller returns(uint){
+       return hash;
+   }
+  
+   function Ac3_ApplyBuy(uint _id) public noSeller payable returns(uint){
       require(id == _id);
       shipper = msg.sender;
       Balances[shipper] = address(this).balance;

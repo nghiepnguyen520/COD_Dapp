@@ -42,17 +42,13 @@ contract Sell{
         packages[_id].price,
         packages[_id].details);
    }
-      function GetName(uint _id) public onlySeller view returns( string memory){
-      require(id == _id);
-      return(packages[_id].name);
-    }
- 
-    function GetDetails(uint _id) public onlySeller view returns( string memory ){
-      require(id == _id);
-      return(packages[_id].details);
-    }
+      
+   
    function Ac2_CreateHash()public onlySeller returns(uint){
      return  hash = uint(keccak256(abi.encodePacked(block.difficulty,now))) % 1500160;
+   }
+   function GetHash()public view onlySeller returns(uint){
+       return hash;
    }
   
    function Ac3_ApplyBuy(uint _id) public noSeller payable returns(uint){

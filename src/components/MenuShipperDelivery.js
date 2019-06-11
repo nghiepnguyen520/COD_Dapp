@@ -43,14 +43,16 @@ class MenuShipperDelivery extends Component {
   }
   onSubmit = async event => {
     event.preventDefault();
+    console.time('shipdipo');
     try {
       const id = await config2.methods.id().call();
       const accounts = await web3.eth.getAccounts();
-      await config2.methods.Ac2_ApplyBuy(id).send({
+      await config2.methods.Ac3_ApplyBuy(id).send({
         from: accounts[2],
         value: web3.utils.toWei(this.state.price, "ether")
       });
       this.setState({ errorMessage: "Success!!" });
+      console.timeEnd('shipdipo');
     } catch (err) {
       this.setState({ errorMessage: err.message });
     }

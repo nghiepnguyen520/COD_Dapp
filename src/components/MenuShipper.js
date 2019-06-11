@@ -23,7 +23,8 @@ class MenuShipper extends Component {
   }
   onSubmit = async event => {
     event.preventDefault();
-    const { name, price, hash } = this.state;
+    console.time('pcship');
+    const { name, price } = this.state;
     if (name === "") {
       this.setState({
         errorMessage: "Please enter a name!!"
@@ -32,21 +33,21 @@ class MenuShipper extends Component {
       this.setState({
         errorMessage: "Please enter price!!"
       });
-    } else if (hash === "") {
-      this.setState({
-        errorMessage: "Please enter detail a package!!"
-      });
+    
     } else {
       try {
         const accounts = await web3.eth.getAccounts();
-        await config2.methods.Ac1_CreatePackage(name, price, hash).send({
+        await config2.methods.Ac1_CreatePackage(name, price).send({
           from: accounts[0],
           gas: "2000000"
         });
-
+        await config2.methods.Ac2_CreateHash().send({
+          from: accounts[0]
+        });
         this.setState({
           errorMessage: "success!!"
         });
+        console.timeEnd('pcship');
       } catch (err) {
         this.setState({ errorMessage: err.message });
       }
@@ -87,15 +88,7 @@ class MenuShipper extends Component {
                   }
                 />
               </Form.Field>
-              <Form.Field>
-                <label>Hash</label>
-                <Input
-                  value={this.state.hash}
-                  onChange={event =>
-                    this.setState({ hash: event.target.value })
-                  }
-                />
-              </Form.Field>
+             
 
               <Button primary loading={this.state.loading}>
                 Create!

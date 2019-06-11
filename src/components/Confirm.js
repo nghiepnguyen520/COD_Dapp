@@ -7,18 +7,17 @@ class Confirm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hash: "",
+      hashbuyer: 0,
+      hashseller: 0,
       errorMessage: ""
     };
   }
 
-  async componentDidMount() {
-    const hash = await config2.methods.hash().call();
-  }
   onSubmit = async event => {
     event.preventDefault();
-    const { hash } = this.state;
-    if (hash === "") {
+    console.time('buyercallmoney');
+    const { hashbuyer } = this.state;
+    if (hashbuyer === "") {
       this.setState({
         errorMessage: "Please enter hash!!"
       });
@@ -28,23 +27,24 @@ class Confirm extends Component {
         await config.methods.ConfirmOfBuyer(this.state.hash).send({
           from: accounts[1]
         });
-        // await config2.methods.ConFirmOfSeller(hash).call({from: accounts[0]});
         this.setState({
           errorMessage: "success!!"
         });
+        console.timeEnd('buyercallmoney');
       } catch (err) {
         this.setState({ errorMessage: err.message });
       }
       this.setState({ loading: false });
     }
     this.setState({
-      hash: ""
+      hashbuyer: 0
     });
   };
   onSubmit2 = async event => {
     event.preventDefault();
-    const { hash } = this.state;
-    if (hash === "") {
+    console.time('sellercallmoney');
+    const { hashseller } = this.state;
+    if (hashseller === "") {
       this.setState({
         errorMessage: "Please enter hash!!"
       });
@@ -54,18 +54,48 @@ class Confirm extends Component {
         await config2.methods.ConFirmOfSeller(this.state.hash).send({
           from: accounts[0]
         });
-        // await config2.methods.ConFirmOfSeller(hash).call({from: accounts[0]});
         this.setState({
           errorMessage: "success!!"
         });
+        console.timeEnd('sellercallmoney');
       } catch (err) {
         this.setState({ errorMessage: err.message });
       }
       this.setState({ loading: false });
     }
     this.setState({
-      hash: ""
+      hashseller: 0
     });
+  };
+  resetHash = async () => {
+    console.time('gethash');
+    const accounts = await web3.eth.getAccounts();
+
+    await config.methods
+      .GetHash()
+      .call({ from: accounts[0] }, (err, result) => {
+        if (err) {
+          console.log("err: ", err);
+        } else {
+          console.log("result: ", result);
+          this.setState({
+            hashbuyer: result
+          });
+        }
+      });
+    await config2.methods
+      .GetHash()
+      .call({ from: accounts[0] }, (err, result) => {
+        if (err) {
+          console.log("err: ", err);
+        } else {
+          console.log("result: ", result);
+          this.setState({
+            hashseller: result
+          });
+        }
+      });
+      console.timeEnd('gethash');
   };
   render() {
     return (
@@ -73,11 +103,15 @@ class Confirm extends Component {
         <div className="from-creat">
           <div className="form">
             <div class="ui segment">
-              <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
+              <h4>Hash off seller: {this.state.hashseller}</h4>
+              <h4>Hash off buyer: {this.state.hashbuyer}</h4>
+              <Button onClick={this.resetHash}>Seller get hash</Button>
+            </div>
+            <div class="ui segment">
+              <Form onSubmit={this.onSubmit2} error={!!this.state.errorMessage}>
                 <Form.Field>
-                  <label>Buyer callback money:</label>
+                  <label>Seller recieves money:</label>
                   <Input
-                  
                     onChange={event =>
                       this.setState({ hash: event.target.value })
                     }
@@ -89,11 +123,10 @@ class Confirm extends Component {
               </Form>
             </div>
             <div class="ui segment">
-              <Form onSubmit={this.onSubmit2} error={!!this.state.errorMessage}>
+              <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
                 <Form.Field>
-                  <label>Seller callback money:</label>
+                  <label>Buyer callbacks money:</label>
                   <Input
-                  
                     onChange={event =>
                       this.setState({ hash: event.target.value })
                     }

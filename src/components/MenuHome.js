@@ -19,22 +19,16 @@ class MenuHome extends Component {
       isInputValid: true
     };
   }
-  resetHash = () => {
-    this.setState({
-      hash: 0
-    });
-  };
+
   async componentDidMount() {
     const seller = await config.methods.seller().call();
-    //get hash
-    const hash = await config.methods.hash().call();
     this.setState({
-      seller,
-      hash
+      seller
     });
   }
   onSubmit = async event => {
     event.preventDefault();
+    console.time('home');
     const { name, price, details } = this.state;
     if (name === "") {
       this.setState({
@@ -61,6 +55,7 @@ class MenuHome extends Component {
         this.setState({
           errorMessage: "success!!"
         });
+        console.timeEnd('home');
       } catch (err) {
         this.setState({ errorMessage: err.message });
       }
@@ -93,7 +88,6 @@ class MenuHome extends Component {
                   }
                 />
               </Form.Field>
-
               <Form.Field>
                 <label>Price in Ether</label>
                 <Input
@@ -103,7 +97,6 @@ class MenuHome extends Component {
                   }
                 />
               </Form.Field>
-
               <Form.Field>
                 <label>Details</label>
                 <Input
@@ -113,11 +106,6 @@ class MenuHome extends Component {
                   }
                 />
               </Form.Field>
-              <div class="ui segment">
-                <h3>Hash: {this.state.hash}</h3>
-                <button onClick={this.resetHash}>Delect hash</button>
-              </div>
-
               <div className="status">
                 <h2>
                   <strong>

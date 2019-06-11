@@ -1,6 +1,6 @@
 import web3 from './web3';
 
-export const Address_CT ='0xAad4D56c80Db3EAE85D62bfcCF504b5C6A6f6A36';
+export const Address_CT ='0x8c2A08bEBFb4eC335e9a615db00F2e7C39cBF98c';
 export const ABI_CT = [
   {
     "constant": true,
@@ -14,8 +14,7 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x08551a53"
+    "type": "function"
   },
   {
     "constant": true,
@@ -29,8 +28,7 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x09bd5a60"
+    "type": "function"
   },
   {
     "constant": true,
@@ -44,8 +42,7 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x7150d8ae"
+    "type": "function"
   },
   {
     "constant": true,
@@ -59,8 +56,7 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xa035b1fe"
+    "type": "function"
   },
   {
     "constant": true,
@@ -79,8 +75,7 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xa8ec4c42"
+    "type": "function"
   },
   {
     "constant": true,
@@ -94,15 +89,13 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xaf640d0f"
+    "type": "function"
   },
   {
     "inputs": [],
     "payable": true,
     "stateMutability": "payable",
-    "type": "constructor",
-    "signature": "constructor"
+    "type": "constructor"
   },
   {
     "constant": false,
@@ -124,8 +117,7 @@ export const ABI_CT = [
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x1d1123d6"
+    "type": "function"
   },
   {
     "constant": true,
@@ -152,48 +144,7 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xb6ca6ba2"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_id",
-        "type": "uint256"
-      }
-    ],
-    "name": "GetName",
-    "outputs": [
-      {
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "signature": "0x9fcce670"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_id",
-        "type": "uint256"
-      }
-    ],
-    "name": "GetDetails",
-    "outputs": [
-      {
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "signature": "0xbac8e8e5"
+    "type": "function"
   },
   {
     "constant": false,
@@ -207,8 +158,21 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x6f0c99d8"
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "GetHash",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "constant": false,
@@ -227,8 +191,7 @@ export const ABI_CT = [
     ],
     "payable": true,
     "stateMutability": "payable",
-    "type": "function",
-    "signature": "0x1b76998a"
+    "type": "function"
   },
   {
     "constant": false,
@@ -242,8 +205,7 @@ export const ABI_CT = [
     "outputs": [],
     "payable": true,
     "stateMutability": "payable",
-    "type": "function",
-    "signature": "0x401de3ae"
+    "type": "function"
   },
   {
     "constant": false,
@@ -257,8 +219,7 @@ export const ABI_CT = [
     "outputs": [],
     "payable": true,
     "stateMutability": "payable",
-    "type": "function",
-    "signature": "0x6ebf14d7"
+    "type": "function"
   }
 ]
     export default new web3.eth.Contract(ABI_CT, Address_CT);

@@ -22,7 +22,7 @@ nav{
   margin: 0px auto;
   border-radius: 3px;
   color: azure;
-  font-family: 'Lobster', cursive;
+  font-family: 'Roboto', sans-serif;
 }
 li{
   padding: 10px;
@@ -34,7 +34,7 @@ li:active{
   background: #f39f9f;
 }
 a{
-  font-size: 20px;
+  font-size: 18px;
   
 }
 .nav-links{

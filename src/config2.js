@@ -1,7 +1,7 @@
 import web3 from './web3';
 
-export const Address_CT ='0x0bB9F9c7C67705696c11782A1496CB3c26D937D8';
-export const ABI_CT = [
+export const Address_CT ='0x460002869748A919e2a1CA430bd29065041A117F';
+export const ABI_CT =  [
   {
     "constant": true,
     "inputs": [],
@@ -14,8 +14,7 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x08551a53"
+    "type": "function"
   },
   {
     "constant": true,
@@ -29,8 +28,7 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x09bd5a60"
+    "type": "function"
   },
   {
     "constant": true,
@@ -44,8 +42,7 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xa035b1fe"
+    "type": "function"
   },
   {
     "constant": true,
@@ -64,8 +61,7 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xa8ec4c42"
+    "type": "function"
   },
   {
     "constant": true,
@@ -79,8 +75,7 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xaf640d0f"
+    "type": "function"
   },
   {
     "constant": true,
@@ -94,15 +89,13 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xc18ed1a1"
+    "type": "function"
   },
   {
     "inputs": [],
     "payable": true,
     "stateMutability": "payable",
-    "type": "constructor",
-    "signature": "constructor"
+    "type": "constructor"
   },
   {
     "constant": false,
@@ -114,18 +107,13 @@ export const ABI_CT = [
       {
         "name": "_price",
         "type": "uint256"
-      },
-      {
-        "name": "_hash",
-        "type": "uint256"
       }
     ],
     "name": "Ac1_CreatePackage",
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x92716eae"
+    "type": "function"
   },
   {
     "constant": true,
@@ -148,8 +136,35 @@ export const ABI_CT = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xb6ca6ba2"
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "Ac2_CreateHash",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "GetHash",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "constant": false,
@@ -159,7 +174,7 @@ export const ABI_CT = [
         "type": "uint256"
       }
     ],
-    "name": "Ac2_ApplyBuy",
+    "name": "Ac3_ApplyBuy",
     "outputs": [
       {
         "name": "",
@@ -168,8 +183,7 @@ export const ABI_CT = [
     ],
     "payable": true,
     "stateMutability": "payable",
-    "type": "function",
-    "signature": "0x8aa201ad"
+    "type": "function"
   },
   {
     "constant": false,
@@ -183,8 +197,7 @@ export const ABI_CT = [
     "outputs": [],
     "payable": true,
     "stateMutability": "payable",
-    "type": "function",
-    "signature": "0xf355b48b"
+    "type": "function"
   },
   {
     "constant": false,
@@ -198,8 +211,7 @@ export const ABI_CT = [
     "outputs": [],
     "payable": true,
     "stateMutability": "payable",
-    "type": "function",
-    "signature": "0x6ebf14d7"
+    "type": "function"
   }
 ]
     export default new web3.eth.Contract(ABI_CT, Address_CT);
