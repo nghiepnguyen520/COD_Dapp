@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import config2 from "../config2";
+import config from "../config";
 import { Form, Button, Input } from "semantic-ui-react";
 import web3 from "../web3";
 class MenuShipper extends Component {
@@ -11,29 +12,40 @@ class MenuShipper extends Component {
       name: "",
       price: "",
       id: 0,
-      hash:''
+      hash:'',
+      pricepc1:0
     };
   }
 
   async componentDidMount() {
     const seller = await config2.methods.seller().call();
+    const pricepc1 = await config.methods.price().call();
     this.setState({
-      seller
+      seller,
+      pricepc1
     });
+    console.log(pricepc1);
   }
+
   onSubmit = async event => {
     event.preventDefault();
     console.time('pcship');
-    const { name, price } = this.state;
+    const { name, price,pricepc1  } = this.state;
     if (name === "") {
       this.setState({
         errorMessage: "Please enter a name!!"
       });
     } else if (price === "") {
       this.setState({
-        errorMessage: "Please enter price!!"
+        errorMessage: "Please enter price equal price off package!!"
       });
-    
+
+    }
+    else if (price !== pricepc1) {
+      this.setState({
+        errorMessage: "Please enter price equal price off package!!"
+      });
+
     } else {
       try {
         const accounts = await web3.eth.getAccounts();
@@ -82,7 +94,8 @@ class MenuShipper extends Component {
               <Form.Field>
                 <label>Price in Ether</label>
                 <Input
-                  value={this.state.price}
+                // disabled
+                  value={this.state.pricepc1}
                   onChange={event =>
                     this.setState({ price: event.target.value })
                   }
@@ -106,3 +119,4 @@ class MenuShipper extends Component {
 }
 
 export default MenuShipper;
+
